@@ -1,0 +1,123 @@
+---
+title: "HW 5"
+author: "Liam Middleton"
+date: "2023-03-29"
+output: html_document
+---
+
+### The Iris flower data set is a multivariable (multicolumn) data set introduced by the British statistician and biologist Ronald Fisher in his 1936 paper "The use of multiple measurements in taxonomic problems". It is sometimes called Anderson's Iris data set because Edgar Anderson collected the data to quantify the morphologic variation of Iris flowers of three related species. The data set consists of 50 samples from each of three species of Iris (Iris Setosa, Iris virginica, and Iris versicolor). Four features were measured from each sample: the length and the width of the sepals and petals, in centimeters.
+
+This dataset became a typical test case for many statistical classification techniques in machine learning.
+
+
+
+```{r}
+
+#adapt this code to your working directory, etc.
+setwd("C:/Users/liamm/OneDrive/Documents/DATA 1501/Assignment 5")
+iris <- read.csv("C:/Users/liamm/OneDrive/Documents/DATA 1501/Assignment 5/IRIS.csv", header = TRUE, sep = ",")
+
+
+```
+
+### Problem 1. Display the 5-number summary for each of the numerical variables (columns) in the data set.
+(Hint: You may use the summary() function.)
+
+
+```{r }
+
+#YOUR CODE GOES HERE
+summary(iris)
+
+```
+
+### Problem 2. Compute the variance and standard deviation for each of the numerical variables (sepal_length, sepal_width, petal_length, and petal_width).
+
+```{r }
+
+#YOUR CODE GOES HERE
+print("this is the variable data")
+var(iris$sepal_length)
+var(iris$sepal_width)
+var(iris$petal_length)
+var(iris$petal_width)
+print("this is the standard deviation")
+sd(iris$sepal_length)
+sd(iris$sepal_width)
+sd(iris$petal_length)
+sd(iris$petal_widthS)
+
+```
+
+
+### Problem 3. Make a boxplot for each of the numerical variables. 
+
+```{r }
+
+#YOUR CODE GOES HERE
+boxplot(var(iris$sepal_length))
+boxplot(var(iris$sepal_width))
+boxplot(var(iris$petal_length))
+boxplot(var(iris$petal_width))
+
+boxplot(sd(iris$sepal_length))
+boxplot(sd(iris$sepal_width))
+boxplot(sd(iris$petal_length))
+boxplot(sd(iris$petal_width))
+
+boxplot(var(iris$sepal_length), var(iris$sepal_width), var(iris$petal_length), var(iris$petal_length), var(iris$petal_width),  sd(iris$sepal_length), sd(iris$sepal_width), sd(iris$petal_length), sd(iris$petal_width) )
+
+```
+
+### Problem 4. Looking at the boxplots for each the four numerical flower features, can you see detect any potential outliers in any of the features (variables)? Which one(s)? 
+
+```{r }
+
+#type your answer here using the print() function and wrapping your text between quotation marks
+#for example: print("No, there are no visible outliers in any of the boxplots.")
+print("I do not see any outliers")
+
+```
+
+### Problem 5. Refer to the boxplot for the variable petal_length. Is the distribution of this variable left-skewed, right-skewed, or symmetric? What does this imply regarding the mean and median (which one is bigger)?
+
+```{r }
+
+#YOUR CODE GOES HERE
+boxplot(iris$petal_length)
+print("the distribution of the variable is symetric. this imples that the median is bigger")
+```
+
+### Problem 6. Compute the mean and median of the variable petal_length. Which one is bigger? Does this coincide with what you expected from just looking at the boxplot in problem 5?
+
+```{r }
+
+#YOUR CODE GOES HERE
+mean(iris$petal_length)
+median(iris$petal_length)
+print("After finding out from calculations that the median is bigger, this agrees with what i followed from the boxplot.")
+```
+
+
+### Problem 7. Create a histogram for the variable sepal_width. 
+
+```{r }
+
+#YOUR CODE GOES HERE
+hist(iris$sepal_width)
+```
+
+
+### Problem 8. Create parallel boxplots of the variable petal_length versus the categorical variable species.
+Which species has the greatest median petal length and which one has the smallest median petal length?
+
+```{r }
+
+#YOUR CODE GOES HERE
+boxplot(iris$petal_length ~ species, data = iris,
+        xlab = "species", ylab = "petal length",
+        main = "parallel boxplot of petal length vs species")
+```
+
+
+

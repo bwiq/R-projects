@@ -1,0 +1,70 @@
+---
+title: "Assignment 4"
+author: "Liam Middleton"
+date: "2023-03-15"
+output: html_document
+---
+
+## Assignment Instructions
+
+# Problem 1. Upload the csv file BostonHousing into R and save it using the variable name housing.df. Make sure to use the command head(housing.df) to see the first few rows of the dataframe. You may also use the command tail(housing.df) to view the last few rows. To see the entire table you can either use the command View(housing.df) and it will display in a different tab in RStudio, or use print(housing.df) to print it on the screen (console).
+
+```{r}
+
+setwd("C:/Users/liamm/OneDrive/Documents/DATA 1501/Updated Assignment 4")
+housing.df <- read.csv("C:/Users/liamm/OneDrive/Documents/DATA 1501/Updated Assignment 4/BostonHousing.csv", header = TRUE, sep = ",")
+
+head(housing.df)
+
+```
+
+# Problem 2. Recreate the table found on the pdf file that accompanies this assignment. Remember to use quotation marks " " for values of categorical variables. Save the table under the variable name df.
+
+```{r}
+
+
+weight <- c(130, 120, 150, 160, 175, 145, 150, 200)
+height <- c(63, 63, 67, 69, 71, 66, 68, 75)
+
+row.names <- c("Peter", "Mary", "Jake", "Jack", "Jose", "Vanessa", "Martha", "Richard")
+
+df <- data.frame(weight, height)
+
+print(df)
+
+
+
+```
+
+# Problem 3. Find the mean of each of the numerical columns in the dataframe df. Also report the mean of the columns CRIM and AGE in the housing dataframe.
+
+```{r}
+
+mean(df$weight)
+mean(df$height)
+
+mean(housing.df$CRIM)
+mean(housing.df$AGE)
+
+print("The mean of the weight column is 153.75")
+print("the mean of the height column is 67.75")
+print("the mean of the CRIM column is 3.613524")
+print("the mean of the AGE column is 68.5749")
+
+```
+
+# Problem 4. For the table df, make a scatterplot of weight vs height. (Remember that R is case sensitive; writing is Height is not the same as writing height, and a slight difference in spelling will cause serious problems.)
+
+```{r}
+
+plot(df$weight ~ df$height)
+
+```
+
+# Problem 5. For the housing dataframe, create a scatterplot of MEDV versus LSTAT (this means that your plot should have MEDV on the vertical axis, and LSTAT on the horizontal axis.)
+
+```{r}
+
+plot(housing.df$MEDV ~ housing.df$LSTAT)
+
+```

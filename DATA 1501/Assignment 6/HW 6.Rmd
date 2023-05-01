@@ -1,0 +1,70 @@
+---
+title: "HW 6"
+author: "Liam Middleton"
+date: "2023-03-29"
+output: html_document
+---
+
+## This dataset contains estimates of the percentage of body fat determined by underwater weighing and various body circumference measurements for 252 men.
+
+```{r}
+#adapt this  code to your working directory
+setwd("C:/Users/liamm/OneDrive/Documents/DATA 1501/Assignment 6")
+bf <- read.csv("C:/Users/liamm/OneDrive/Documents/DATA 1501/Assignment 6/BodyFat.csv", header = TRUE, sep = ",")
+head(bf)
+```
+
+### Problem 1. Consider the variables Weight, Chest, Abdomen, Thigh, Hip, and Biceps. Which of these variables shows the strongest correlation to body fat? Which one shows the weakest correlation to body fat? Hint: Compute the Pearson correlation coefficient between each of these variables and BodyFat.
+
+```{r}
+setwd("C:/Users/liamm/OneDrive/Documents/DATA 1501/Assignment 6")
+bf <- read.csv("C:/Users/liamm/OneDrive/Documents/DATA 1501/Assignment 6/BodyFat.csv", header = TRUE, sep = ",")
+head(bf)
+
+cor(bf$Weight, bf$BodyFat, method = "pearson")
+cor(bf$Chest, bf$BodyFat, method = "pearson")
+cor(bf$Abdomen, bf$BodyFat, method = "pearson")
+cor(bf$Thigh, bf$BodyFat, method = "pearson")
+cor(bf$Hip, bf$BodyFat, method = "pearson")
+cor(bf$Biceps, bf$BodyFat, method = "pearson")
+print("the vairable with the strongest correlation is Abdomen. The variable with the weakest correlation is Biceps.")
+```
+
+### Problem 2. Make a scatterplot of BodyFat versus each of the two variables that were the answer to problem 1. There should be two scatterplots here.
+
+```{r}
+
+#Your code and answer goes here
+plot(bf$BodyFat, bf$Abdomen)
+plot(bf$BodyFat, bf$Biceps)
+```
+
+### Problem 3. Is the variable Wrist normally distributed? EXPLAIN your conclusion by using at least two methods (to double-check your answer). EXPLAIN THE RESULTS IN EACH METHOD. If you do all three methods: +1 Bonus point.
+
+```{r}
+#Your code goes here
+#histogram method
+hist(bf$Wrist, main = "Histogram")
+#shapiro test method
+shapiro.test(bf$Wrist)
+#qqplot method
+qqnorm(bf$Wrist)
+qqline(bf$Wrist)
+
+print("the varibale, Wrist, is normally distributed. Using the histogram, the data comes back with a near perfect arch. This is one way to tell the data is normally distributed. Another way to tell the data is normally distributed is with the QQ plot. When you use the qqnorm and qqline functions it outputs a mostly smooth line with very little discrepencies/most of the points are within the confidence bands. The final method used was the Shapiro-Wilk normality test. the p-value is greater than .05 because it is 0.06377, showing the data is normally distributed.")
+
+```
+
+### Problem 4. Create a linear regression model of BodyFat versus Height. Print the summary to the screen and report the R-squared of this model. From your understanding of what R-squared means, what percentage of the variance of BodyFat can be explained by the variable Height? Consequently, would you say that Height is a good predictor of BodyFat?
+
+```{r}
+
+### Your code goes here
+library(stats)
+model <- lm(bf$BodyFat ~ bf$Height)
+summary(model)
+r_squared <- summary(model)$r.squared
+cat("R-squared:", r_squared, "\n")
+print("Because the R-squared is 0.008009423, this translates to roughly .08%, or the percent of the varaince of BodyFat. This would not be a good indicator because the lower the % the lower the correlation between the two variables. The better varibale with more accurate correlation would be Abdomen.")
+```
+

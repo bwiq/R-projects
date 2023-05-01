@@ -1,0 +1,97 @@
+---
+title: "Assignment 4"
+author: "Liam Middleton"
+date: "2023-03-16"
+output: html_document
+---
+
+```{r }
+
+
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+
+#enter all your code here in this block
+
+#just a heads up..I installed packages dplyr and ggplot2 so if it doesn't run for you, make sure they are installed. 
+```
+
+## Assignment Instructions
+
+# Problem 1. Upload the cvs file BostonHousing into R and save it using the variable name housing.df. Make sure to use the command head(housing.df) to see the first few rows of the dataframe. You may also use the command tail(housing.df) to view the last few rows. To see the entire table you can either use the command View(housing.df) and it will display in a different tab in RStudio, or use print(housing.df) to print it on the screen (console).
+
+```{r}
+
+#enter all your code for this problem here
+getwd()
+setwd("C:/users/liamm/OneDrive/Documents/DATA 1501/R things/datasets")
+housing.df<- read.csv("C:/users/liamm/OneDrive/Documents/DATA 1501/R things/datasets/BostonHousing.csv", header= TRUE, sep = ",")
+head(housing.df)
+```
+
+# Problem 2. Recreate the table found on the pdf file that accompanies this assignment. Remember to use quotation marks " " for values of categorical variables. Save the table under the variable name df.
+
+```{r}
+
+#enter all your code for this problem here
+df <- data.frame(
+  names = c("peter", "mary", "jake", "jack", "jose", "vanessa", "martha", "richard"),
+  weight = c(130, 120, 150, 160, 175, 145, 150, 200),
+  height = c(63, 63, 67, 69, 71, 66, 68, 75)
+)
+print(df)
+```
+
+# Problem 3. Find the mean of each of the numerical columns in the dataframe df. Also report the mean of the columns CRIM and AGE in the housing dataframe.
+
+```{r}
+
+#enter all your code for this problem here
+library(dplyr)
+
+df %>%
+  select_if(is.numeric) %>%
+  summarise_all(mean)
+
+mean(df)
+
+setwd("C:/users/liamm/OneDrive/Documents/DATA 1501/R things/datasets")
+housing.df<- read.csv("C:/users/liamm/OneDrive/Documents/DATA 1501/R things/datasets/BostonHousing.csv", header= TRUE, sep = ",")
+head(housing.df)
+
+mean_CRIM <- mean(housing.df$CRIM)
+mean_AGE <- mean(housing.df$AGE)
+print(mean_CRIM)
+print(mean_AGE)
+
+```
+
+# Problem 4. For the table df, make a scatterplot of height vs weight. (Remember that R is case sensitive; writing is Height is not the same as writing height, and a slight difference in spelling will cause serious problems.)
+
+```{r}
+
+#enter all your code for this problem here
+library(ggplot2)
+ggplot(df, aes(x = weight, y = height)) +
+  geom_point() +
+  labs(x = "weight", y = "height")
+```
+
+# Problem 5. For the housing dataframe, create a scatterplot of MEDV versus LSTAT (this means that your plot should have MEDV on the vertical axis, and LSTAT on the horizontal axis.)
+
+```{r}
+
+#enter all your code for this problem here
+library(ggplot2)
+ggplot(housing.df, aes(x = LSTAT, y = MEDV)) +
+  geom_point() +
+  labs(x = "LSTAT", y = "MEDV")
+
+```

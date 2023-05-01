@@ -1,0 +1,62 @@
+---
+title: "HW 7"
+author: "Liam Middleton"
+date: "2023-03-29"
+output: html_document
+---
+
+## This dataset contains estimates of the percentage of body fat determined by underwater weighing and various body circumference measurements for 252 men. The units for the various variables (measurements) are as shown in the lecture (PowerPoint slides).
+
+```{r}
+#adapt this  code to your working directory
+setwd("C:/Users/liamm/OneDrive/Documents/DATA 1501/Assignment 6")
+bf <- read.csv("C:/Users/liamm/OneDrive/Documents/DATA 1501/Assignment 6/BodyFat.csv", header = TRUE, sep = ",")
+head(bf)
+```
+
+
+### Problem 1. Create a linear regression model of Weight versus Abdomen. Call it model1. Print the summary to the screen and report the R-squared of this model. From your understanding of what R-squared means, how much of the variance of Weight can be explained by the variable Abdomen? 
+
+```{r}
+
+### Your code goes here
+model1 <- lm(bf$Weight ~ bf$Abdomen)
+summary(model1)
+print("87.85% of the variance of Weight is explained by Abdomen.")
+```
+
+
+### Problem 2. Create a linear regression model of Weight versus Hips. Call it model2. Print the summary to the screen and report the R-squared of this model. From your understanding of what R-squared means, how much of the variance of Weight can be explained by the variable Hips?
+
+```{r}
+
+### Your code goes here
+model2 <- lm(bf$Weight ~ bf$Hip)
+summary(model2)
+print("88.53% of the variance of Weight can be explained by the variable Hips.")
+```
+
+### Problem 3. Based on R-squared, which of the two models should be better at predicting Weight? Why?
+
+```{r}
+
+### Your code goes here. Use a print statement.
+print("Hips should be better at predicting Weight, but just by a tiny bit. The reason for this is because the varaince for Hips(88.54%) is greater than the variance for Abdomen(87.85%")
+```
+
+
+### Problem 4. Write down the corresponding linear equation of the BEST model (model1 or model2). Use this equation to make a prediction of the weight of a person with measurements: Abdomen = 93 and Hip = 103. Show your work (you may use R as a calculator)
+
+```{r}
+
+### Your code goes here. 
+summary(model2)
+plot(model2)
+
+y = 3.85 + 93 + 103
+print(y)
+```
+
+
+
+
